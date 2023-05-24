@@ -5,8 +5,330 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CW2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="База даних лікарні" Height="450" Width="800">
     <Grid>
-        
+        <TabControl x:Name="myTabControl">
+            <TabItem Header="Пацієнти">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="71*"/>
+                        <ColumnDefinition Width="326*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130" />
+                                <ColumnDefinition Width="250" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Додати пацієнта" Grid.Row="0" Grid.Column="2" Click="AddButton_Click" Margin="3"/>
+
+                            <Label Grid.Row="0" Grid.Column="0" Margin="3" Content="Пошук за прізвищем" />
+                            <TextBox x:Name="textBoxSearchByName" Grid.Row="0" Grid.Column="1" Width="250" Height="20px" TextChanged="textBoxSearchByName_TextChanged"/>
+
+                            <Button Content="Оновити список" Grid.Row="0" Grid.Column="3" Click="UpdDataGridButton_Click" Margin="3"/>
+                        </Grid>
+
+                        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="5" 
+           SelectionMode="Single" SelectionUnit="FullRow" MaxHeight="400" CellEditEnding="dataGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID_patient" Binding="{Binding ID_patient}" />
+                                <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}" />
+                                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}" />
+                                <DataGridTextColumn Header="FathersName" Binding="{Binding FathersName}" />
+                                <DataGridTextColumn Header="DateOfBirth" Binding="{Binding DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}" />
+                                <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
+                                <DataGridTextColumn Header="PhoneNumber" Binding="{Binding PhoneNumber}" />
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити пацієнта" Click="DeleteButton_Click" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Лікарі">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Додати лікаря" Grid.Row="0" Grid.Column="0" Click="AddButton_Click" Margin="3"/>
+                            <Button Content="Оновити список" Grid.Row="0" Grid.Column="1" Click="UpdDataGridButton_Click" Margin="3"/>
+                        </Grid>
+
+                        <DataGrid x:Name="dataGrid2" AutoGenerateColumns="False" Margin="5" 
+                            SelectionMode="Single" SelectionUnit="FullRow" MaxHeight="400" CellEditEnding="dataGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <!-- Doctors -->
+                                <DataGridTextColumn Header="ID_doctor" Binding="{Binding ID_doctor}" />
+                                <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}" />
+                                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}" />
+                                <DataGridTextColumn Header="FathersName" Binding="{Binding FathersName}" />
+                                <DataGridTextColumn Header="Specialization" Binding="{Binding Specialization}" />
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити лікаря" Click="DeleteButton_Click" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Відділення">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Додати відділення" Grid.Row="0" Grid.Column="0" Click="AddButton_Click" Margin="3"/>
+                            <Button Content="Оновити список" Grid.Row="0" Grid.Column="1" Click="UpdDataGridButton_Click" Margin="3"/>
+                        </Grid>
+
+                        <DataGrid x:Name="dataGrid3" AutoGenerateColumns="False" Margin="5" 
+                            SelectionMode="Single" SelectionUnit="FullRow" MaxHeight="400" CellEditEnding="dataGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <!-- Departments -->
+                                <DataGridTextColumn Header="ID_department" Binding="{Binding ID_department}" />
+                                <DataGridTextColumn Header="DepartmentName" Binding="{Binding DepartmentName}" />
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити відділення" Click="DeleteButton_Click" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Медичні процедури">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Призначити медичну процедуру" Grid.Row="0" Grid.Column="0" Click="AddButton_Click" Margin="3"/>
+                            <Button Content="Оновити список" Grid.Row="0" Grid.Column="1" Click="UpdDataGridButton_Click" Margin="3"/>
+                        </Grid>
+
+                        <DataGrid x:Name="dataGrid4" AutoGenerateColumns="False" Margin="5" 
+                            SelectionMode="Single" SelectionUnit="FullRow" MaxHeight="400" CellEditEnding="dataGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <!-- MedicalProcedures -->
+                                <DataGridTextColumn Header="ID_procedure" Binding="{Binding ID_procedure}" />
+                                <DataGridTextColumn Header="ProcedureName" Binding="{Binding ProcedureName}" />
+                                <DataGridTextColumn Header="DDescription" Binding="{Binding DDescription}" />
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити процедуру" Click="DeleteButton_Click" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Призначення">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Додати призначення" Grid.Row="0" Grid.Column="0" Click="AddButton_Click" Margin="3"/>
+                            <Button Content="Оновити список" Grid.Row="0" Grid.Column="1" Click="UpdDataGridButton_Click" Margin="3"/>
+                        </Grid>
+
+                        <DataGrid x:Name="dataGrid5" AutoGenerateColumns="False" Margin="5" 
+                            SelectionMode="Single" SelectionUnit="FullRow" MaxHeight="400" CellEditEnding="dataGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <!-- Appointments -->
+                                <DataGridTextColumn Header="ID_appointment" Binding="{Binding ID_appointment}" />
+                                <DataGridTextColumn Header="ID_patient" Binding="{Binding ID_patient}" />
+                                <DataGridTextColumn Header="ID_doctor" Binding="{Binding ID_doctor}" />
+                                <DataGridTextColumn Header="ID_procedure" Binding="{Binding ID_procedure}" />
+                                <DataGridTextColumn Header="DDescription" Binding="{Binding DDescription}" />
+                                <DataGridTextColumn Header="AppointmentDate" Binding="{Binding AppointmentDate}" />
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити призначення" Click="DeleteButton_Click" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Візити">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Додати візит" Grid.Row="0" Grid.Column="0" Click="AddButton_Click" Margin="3"/>
+                            <Button Content="Оновити список" Grid.Row="0" Grid.Column="1" Click="UpdDataGridButton_Click" Margin="3"/>
+                        </Grid>
+
+                        <DataGrid x:Name="dataGrid6" AutoGenerateColumns="False" Margin="5" 
+                            SelectionMode="Single" SelectionUnit="FullRow" MaxHeight="400" CellEditEnding="dataGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <!-- Visits -->
+                                <DataGridTextColumn Header="ID_visit" Binding="{Binding ID_visit}" />
+                                <DataGridTextColumn Header="ID_patient" Binding="{Binding ID_patient}" />
+                                <DataGridTextColumn Header="ID_department" Binding="{Binding ID_department}" />
+                                <DataGridTextColumn Header="VisitDate" Binding="{Binding VisitDate}" />
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити візит" Click="DeleteButton_Click" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Медикаменти">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Додати медикамент" Grid.Row="0" Grid.Column="0" Click="AddButton_Click" Margin="3"/>
+                            <Button Content="Оновити список" Grid.Row="0" Grid.Column="1" Click="UpdDataGridButton_Click" Margin="3"/>
+                        </Grid>
+
+                        <DataGrid x:Name="dataGrid7" AutoGenerateColumns="False" Margin="5" 
+                            SelectionMode="Single" SelectionUnit="FullRow" MaxHeight="400" CellEditEnding="dataGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <!-- Medications -->
+                                <DataGridTextColumn Header="ID_medication" Binding="{Binding ID_medication}" />
+                                <DataGridTextColumn Header="MedicationName" Binding="{Binding MedicationName}" />
+                                <DataGridTextColumn Header="QuantityInStock" Binding="{Binding QuantityInStock}" />
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити медикамент" Click="DeleteButton_Click" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
