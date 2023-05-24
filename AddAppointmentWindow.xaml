@@ -1,0 +1,43 @@
+﻿<Window x:Class="CW2.AddAppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CW2"
+        mc:Ignorable="d"
+        Title="Add Appointment" Height="250" Width="420" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="ID пацієнта:" Grid.Row="0" Grid.Column="0"/>
+        <ComboBox x:Name="cbPatientID" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+        <Label Content="ID лікаря:" Grid.Row="1" Grid.Column="0"/>
+        <ComboBox x:Name="cbDoctorID" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <Label Content="ID процедури:" Grid.Row="2" Grid.Column="0"/>
+        <ComboBox x:Name="cbProcedureID" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+
+        <Label Content="Дата призначення:" Grid.Row="3" Grid.Column="0"/>
+        <DatePicker x:Name="dpAppointmentDate" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Коментар:" Grid.Row="4" Grid.Column="0"/>
+        <TextBox x:Name="txtDDescription" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+        <Button Content="Додати" Click="OkButton_Click" Margin="5" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Width="100"/>
+        <Button Content="Скасувати" Click="CancelButton_Click" Margin="184,5,0,5" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Width="100"/>
+    </Grid>
+</Window>
